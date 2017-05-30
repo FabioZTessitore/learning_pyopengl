@@ -26,19 +26,19 @@ def main():
         return
 
     window = glfw.create_window(WIDTH, HEIGHT, "Hello World", None, None)
-    glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3);
-    glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3);
-    glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE);
-    glfw.window_hint(glfw.RESIZABLE, GL_FALSE);
+    glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
+    glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
+    glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
+    glfw.window_hint(glfw.RESIZABLE, GL_FALSE)
     if not window:
         glfw.terminate()
         return -1
     glfw.make_context_current(window)
 
     (width, height) = glfw.get_framebuffer_size(window)
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, width, height)
 
-    glfw.set_key_callback(window, key_callback);
+    glfw.set_key_callback(window, key_callback)
 
     glClearColor(0.2, 0.3, 0.2, 1.0)
 
@@ -84,7 +84,7 @@ def main():
     image = Image.open('../textures/wall.jpg')
     img_data = numpy.array(list(image.getdata()), numpy.uint8)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 512, 512, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
-    glGenerateMipmap(GL_TEXTURE_2D);
+    glGenerateMipmap(GL_TEXTURE_2D)
     glBindTexture(GL_TEXTURE_2D, 0)
 
     texture2 = glGenTextures(1)
@@ -96,7 +96,7 @@ def main():
     image = Image.open('../textures/container.jpg')
     img_data = numpy.array(list(image.getdata()), numpy.uint8)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 512, 512, 0, GL_RGB, GL_UNSIGNED_BYTE, img_data)
-    glGenerateMipmap(GL_TEXTURE_2D);
+    glGenerateMipmap(GL_TEXTURE_2D)
     glBindTexture(GL_TEXTURE_2D, 0)
 
 
@@ -107,7 +107,7 @@ def main():
 
         ourShader.Use()
 
-        glActiveTexture(GL_TEXTURE0);
+        glActiveTexture(GL_TEXTURE0)
         if state == 0:
             glBindTexture(GL_TEXTURE_2D, texture1)
         else:
