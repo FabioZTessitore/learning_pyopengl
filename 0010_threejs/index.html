@@ -18,18 +18,22 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
-			//var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			//var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			//var cube = new THREE.Mesh( geometry, material );
-			//scene.add( cube );
+      var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light );
 
       var loader = new THREE.ColladaLoader();
+
+      var mycube;
+      var mycube2;
 
     loader.load(
     	// resource URL
     	'cubes.dae',
     	// Function when resource is loaded
     	function ( collada ) {
+        console.log(collada);
+        mycube = collada.scene.children[0].children[0];
+        mycube2 = collada.scene.children[1].children[0];
     		scene.add( collada.scene );
     	},
     	// Function called when download progresses
@@ -43,9 +47,11 @@
 			var render = function () {
 				requestAnimationFrame( render );
 
-				//cube.rotation.x += 0.1;
-				//cube.rotation.y += 0.1;
+				mycube.rotation.x += 0.01;
+				mycube.rotation.y += 0.01;
 
+				mycube2.rotation.x += 0.01;
+				mycube2.rotation.y += 0.01;
 				renderer.render(scene, camera);
 			};
 
