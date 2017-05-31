@@ -53,10 +53,10 @@ class ObjLoader:
 
         self.model = numpy.array(self.model, dtype=numpy.float32)
 
-        print 'vertices (', len(self.vert_coords), ')\n', self.vert_coords
-        print 'textures (', len(self.text_coords), ')\n', self.text_coords
+        #print 'vertices (', len(self.vert_coords), ')\n', self.vert_coords
+        #print 'textures (', len(self.text_coords), ')\n', self.text_coords
         #print 'normals', self.normals
-        print 'vert indexes (', len(self.vert_indexes), ')\n', self.vert_indexes
+        #print 'vert indexes (', len(self.vert_indexes), ')\n', self.vert_indexes
         #print self.text_indexes
         #print self.normals_indexes
         #print self.model
