@@ -41,34 +41,18 @@ def main():
 
     obj = ObjLoader()
     obj.load('../obj/cube/cube.obj')
-    #quad = [
-    #    # coords          # texture
-    #    -0.5, -0.5, 0.0,  0.0, 0.0,
-    #     0.5, -0.5, 0.0,  1.0, 0.0,
-    #     0.5,  0.5, 0.0,  1.0, 1.0,
-    #    -0.5,  0.5, 0.0,  0.0, 1.0
-    #]
-    #quad = numpy.array(quad, dtype=numpy.float32)
-    #indexes = [
-    #    0, 1, 2,
-    #    0, 2, 3
-    #]
-    #indexes = numpy.array(indexes, dtype=numpy.uint32)
 
     ourShader = Shader('vertex_shader.vs', 'fragment_shader.frag')
 
     VAO = glGenVertexArrays(1)
     VBO = glGenBuffers(1)
-    EBO = glGenBuffers(1)
 
     glBindVertexArray(VAO)
     glBindBuffer(GL_ARRAY_BUFFER, VBO)
     glBufferData(GL_ARRAY_BUFFER, obj.model.itemsize * len(obj.model), obj.model, GL_STATIC_DRAW)
-    #glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO)
-    #glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * len(obj.vert_indexes), numpy.array(obj.vert_indexes, dtype=numpy.uint32), GL_STATIC_DRAW)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, obj.model.itemsize * 3, ctypes.c_void_p(0))
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, ctypes.c_void_p(0))
     glEnableVertexAttribArray(0)
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, obj.model.itemsize * 2, ctypes.c_void_p(len(obj.vert_indexes)*3*4))
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, ctypes.c_void_p(len(obj.vert_indexes)*3*4))
     glEnableVertexAttribArray(1)
     glBindVertexArray(0)
 
@@ -110,7 +94,6 @@ def main():
         glActiveTexture(GL_TEXTURE0)
         glBindTexture(GL_TEXTURE_2D, texture)
         glBindVertexArray(VAO)
-        #glDrawElements(GL_TRIANGLES, len(obj.vert_indexes), GL_UNSIGNED_INT, None)
         glDrawArrays(GL_TRIANGLES, 0, len(obj.vert_indexes))
         glBindVertexArray(0)
 
